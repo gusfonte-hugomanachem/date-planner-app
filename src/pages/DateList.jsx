@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 function DateList () {
     
-    const [dateList, setDateList] = useState({})
+    const [dateList, setDateList] = useState([])
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/dates`)
@@ -17,15 +17,17 @@ function DateList () {
     }, [])
     
     return (
-        <>
+        <section>
         <h1>Date List</h1>
 
         {dateList.map((date) => {
             return (
-                <p>{date.title}</p>
+                <div key={date.id}>
+                    <p>{date.title}</p>
+                </div>
             )
         })}
-        </>
+        </section>
     )
 }
 export default DateList
