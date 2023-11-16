@@ -8,16 +8,23 @@ function DateList () {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/dates`)
         .then((response) => {
+            setDateList(response.data)
             console.log(response.data)
         })
         .catch((err) => {
             console.log(err)
         })
-    })
+    }, [])
     
     return (
         <>
-        <h1>DATE LIST</h1>
+        <h1>Date List</h1>
+
+        {dateList.map((date) => {
+            return (
+                <p>{date.title}</p>
+            )
+        })}
         </>
     )
 }
