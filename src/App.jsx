@@ -1,6 +1,11 @@
 import { Routes, Route } from "react-router-dom";
+
 import './App.css'
+
 import Navbar from "./components/Navbar";
+import DateList from "./pages/DateList";
+import Homepage from "./pages/Homepage";
+
 
 function App() {
 
@@ -9,8 +14,8 @@ function App() {
     <Navbar />
 
     <Routes>
-      <Route path="/" element={<h1>HELLO</h1>}/>
-      <Route path="/dates" element={<h1>Dates List page</h1>}/>
+      <Route path="/" element={<Homepage />}/>
+      <Route path="/dates" element={<DateList />}/>
     </Routes>
     </>
   )
