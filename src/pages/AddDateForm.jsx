@@ -10,15 +10,17 @@ function AddDateForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newDate = {title,description,place,time}
+    const newDate = { title, description, place, time };
 
-    axios.post("https://date-flow.adaptable.app/dates", newDate)
-      .then(response => console.log(response)) 
-      .catch(error => console.log("error to post new date : ", error))
+    axios
+      .post("https://date-flow.adaptable.app/dates", newDate)
+      .then((response) => console.log(response))
+      .catch((error) => console.log("error to post new date : ", error));
   };
 
   return (
-    <div className="AddDateForm">
+    <div id="add-date-page">
+
       <form onSubmit={handleSubmit}>
         <label>
           Title :
@@ -27,9 +29,7 @@ function AddDateForm() {
             name="title"
             value={title}
             placeholder="enter the title"
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
+            onChange={(e) => setTitle(e.target.value)}
             required
           />
         </label>
@@ -40,10 +40,8 @@ function AddDateForm() {
             type="text"
             name="description"
             value={description}
-            placeholder="a description about your date"
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
+            placeholder="describe your date"
+            onChange={(e) => setDescription(e.target.value)}
           />
         </label>
 
@@ -54,17 +52,18 @@ function AddDateForm() {
             name="place"
             value={place}
             placeholder="enter the title"
-            onChange={(e) => {
-              setPlace(e.target.value);
-            }}
+            onChange={(e) => setPlace(e.target.value)}
           />
         </label>
 
         <label>
           Time :
-          <input type="date" name="time" value={time} onChange={(e) => {
-              setTime(e.target.value);
-            }} />
+          <input
+            type="date"
+            name="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          />
         </label>
 
         <button>Create</button>
