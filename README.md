@@ -62,9 +62,14 @@ To do
 
 - [x] basic app setup
 - [x] basic server setup
+- [x] implement routing
 - [x] server deployment
 - [x] added pages: Homepage, DateList, AddDateForm
 - [x] added components: Navbar
+- [x] basic css
+
+- Fixes:
+    - [] api resets periodically (don't know why)
 
 ## didn't have pacience to change
 
