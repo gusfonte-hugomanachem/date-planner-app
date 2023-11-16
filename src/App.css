@@ -1,0 +1,52 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+}
+
+p {
+margin: 2px;
+}
+
+label {
+    padding: 10px;
+}
+
+#Navbar {
+    text-align: center;
+    background-color: lightblue;
+}
+
+#Navbar-nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#home-page {
+    margin: 20px;
+}
+
+#date-list-page {
+margin: 20px;
+}
+
+.dates-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date-box {
+    border: 1px solid;
+    padding: 5px;
+    margin: 15px;
+    width: 50%;
+}
+
+#add-date-page {
+margin: 20px;
+}
