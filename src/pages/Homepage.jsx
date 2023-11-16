@@ -1,5 +1,10 @@
 function Homepage () {
-    return(<p>Homepage</p>);
+
+    return (
+        <>
+        <h1>HOMEPAGE</h1>
+        </>
+    )
 }
 
-export default Homepage;
+export default Homepage
