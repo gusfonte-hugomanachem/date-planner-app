@@ -1,33 +1,41 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-function DateList () {
-    
-    const [dateList, setDateList] = useState([])
+import "../App.css";
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/dates`)
-        .then((response) => {
-            setDateList(response.data)
-            console.log(response.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }, [])
-    
-    return (
-        <section>
-        <h1>Date List</h1>
+function DateList() {
+  const [dateList, setDateList] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/dates`)
+      .then((response) => {
+        setDateList(response.data);
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  return (
+    <div id="date-list-page">
+      <h1>Date List</h1>
+
+      <div className="dates-container">
         {dateList.map((date) => {
-            return (
-                <div key={date.id}>
-                    <p>{date.title}</p>
-                </div>
-            )
+          return (
+            <div key={date.id} className="date-box">
+              <p>Title: {date.title}</p>
+              <p>Time: {date.time}</p>
+              <p>Place: {date.place}</p>
+              <p>Description: {date.description}</p>
+            </div>
+          );
         })}
-        </section>
-    )
+      </div>
+    </div>
+  );
 }
-export default DateList
+
+export default DateList;
