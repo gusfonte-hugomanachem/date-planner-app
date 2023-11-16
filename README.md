@@ -69,7 +69,7 @@ To do
 - [x] basic css
 
 - Fixes:
-    - [] api resets periodically (don't know why)
+    - [ ] api resets periodically (don't know why)
 
 ## didn't have pacience to change
 
