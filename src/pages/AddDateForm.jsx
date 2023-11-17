@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddDateForm() {
   const [title, setTitle] = useState("");
@@ -7,13 +8,18 @@ function AddDateForm() {
   const [place, setPlace] = useState("");
   const [time, setTime] = useState(new Date());
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newDate = { title, description, place, time };
     axios
       .post(`${import.meta.env.VITE_API_URL}/dates`, newDate)
-      .then((response) => console.log(response))
+      .then((response) => {
+        navigate(-1);
+        console.log(response);
+      })
       .catch((error) => console.log("error to post new date : ", error));
   };
 
