@@ -6,10 +6,10 @@ import "../App.css";
 
 function DateList() {
   const [fullDateList, setFullDateList] = useState([]);
-  const [dateList, setDateList] = useState([]);
+  const [dateList, setDateList] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
-  const [activities, setActivities] = useState({});
+  const [activities, setActivities] = useState(null);
 
   const getAllDates = () => {
     axios
@@ -75,10 +75,7 @@ function DateList() {
       </Link>
 
       <div className="dates-container">
-        {loading && <h1>Loading...</h1>}
-
-        {!loading &&
-          dateList.map((date) => {
+        {dateList === null ? <h1>Loading...</h1> : (dateList.map((date) => {
             return (
               <div key={date.id} className="date-box">
                 <p>Title: {date.title}</p>
@@ -88,17 +85,22 @@ function DateList() {
                 <Link to={`/dates/${date.id}`}>
                   <button>See details</button>
                 </Link>
-
-                <h3>
-                  {
-                    activities.filter((activity) => activity.dateId === date.id)
-                      .length
-                  }{" "}
-                  Activities
-                </h3>
+                {activities === null ? (
+                  <p>Loading activities...</p>
+                ) : (
+                  <h3>
+                    {
+                      activities.filter(
+                        (activity) => activity.dateId === date.id
+                      ).length
+                    }{" "}
+                    Activities
+                  </h3>
+                )}
               </div>
             );
-          })}
+          }))}
+        
       </div>
     </div>
   );
