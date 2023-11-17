@@ -8,14 +8,16 @@ function DateList() {
   const [fullDateList, setFullDateList] = useState([]);
   const [dateList, setDateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  
   const getAllDates = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/dates`)
       .then((response) => {
         setDateList(response.data);
         setFullDateList(response.data);
-        console.log(response.data);
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +43,7 @@ function DateList() {
   return (
     <div id="date-list-page">
       <h1>Date List</h1>
+
       <label>
         Search a Date
         <input
@@ -56,22 +59,21 @@ function DateList() {
       </Link>
 
       <div className="dates-container">
-        
-        {dateList.map((date) => {
-          return (
-            
-            <div key={date.id} className="date-box">
-              <p>Title: {date.title}</p>
-              <p>Time: {date.time}</p>
-              <p>Place: {date.place}</p>
-              <p>Description: {date.description}</p>
-              <Link to={`/dates/${date.id}`}>
-                <button>See details</button>
-              </Link>
-            </div>
+        {loading && <h1>Loading...</h1>}
 
-          );
-        })}
+        {!loading && dateList.map((date) => {
+            return (
+              <div key={date.id} className="date-box">
+                <p>Title: {date.title}</p>
+                <p>Time: {date.time}</p>
+                <p>Place: {date.place}</p>
+                <p>Description: {date.description}</p>
+                <Link to={`/dates/${date.id}`}>
+                  <button>See details</button>
+                </Link>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
