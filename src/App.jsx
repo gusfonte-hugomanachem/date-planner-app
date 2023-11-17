@@ -7,6 +7,7 @@ import DateList from "./pages/DateList";
 import Homepage from "./pages/Homepage";
 import AddDateForm from "./pages/AddDateForm";
 import DateDetails from "./pages/DateDetails";
+import EditDateDetails from "./pages/EditDateDetails";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/dates" element={<DateList />} />
         <Route path="/dates/create" element={<AddDateForm />} />
+        <Route path="/dates/:dateId/edit" element={<EditDateDetails />} />
         <Route path="/dates/:dateId" element={<DateDetails />} />
       </Routes>
     </>

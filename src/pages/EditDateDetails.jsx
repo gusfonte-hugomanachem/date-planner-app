@@ -1,25 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 import "../App.css";
 
-function DateDetails() {
+function EditDateDetails() {
   const [date, setDate] = useState({});
 
   const { dateId } = useParams();
-  const navigate = useNavigate();
-
-  const deleteDate = async () => {
-    try {
-      await axios
-        .delete(`${import.meta.env.VITE_API_URL}/dates/${dateId}`)
-          console.log("date deleted");
-          navigate(-1)
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   useEffect(() => {
     axios
@@ -30,7 +18,7 @@ function DateDetails() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  });
 
   return (
     <div className="date-box">
@@ -39,10 +27,9 @@ function DateDetails() {
       <p>Place: {date.place}</p>
       <p>Description: {date.description}</p>
 
-      <button>Edit</button>
-      <button onClick={() => deleteDate()}>Delete</button>
+      <button>Save</button>
     </div>
   );
 }
 
-export default DateDetails;
+export default EditDateDetails;
