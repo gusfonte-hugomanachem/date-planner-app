@@ -11,9 +11,8 @@ function AddDateForm() {
     e.preventDefault();
 
     const newDate = { title, description, place, time };
-
     axios
-      .post("https://date-flow.adaptable.app/dates", newDate)
+      .post(`${import.meta.env.VITE_API_URL}/dates`, newDate)
       .then((response) => console.log(response))
       .catch((error) => console.log("error to post new date : ", error));
   };
