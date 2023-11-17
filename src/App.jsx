@@ -7,7 +7,6 @@ import DateList from "./pages/DateList";
 import Homepage from "./pages/Homepage";
 import AddDateForm from "./pages/AddDateForm";
 import DateDetails from "./pages/DateDetails";
-import EditDateDetails from "./pages/EditDateDetails";
 import UpdateDateForm from "./pages/UpdateDateForm";
 
 function App() {
