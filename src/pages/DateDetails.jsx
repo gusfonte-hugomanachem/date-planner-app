@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -39,7 +39,10 @@ function DateDetails() {
       <p>Place: {date.place}</p>
       <p>Description: {date.description}</p>
 
-      <button>Edit</button>
+      <Link to={`/dates/${date.id}/edit`}>
+        <button>Edit</button>
+      </Link>
+      
       <button onClick={() => deleteDate()}>Delete</button>
     </div>
   );
