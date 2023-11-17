@@ -5,23 +5,52 @@ import axios from "axios";
 import "../App.css";
 
 function DateList() {
+  const [fullDateList, setFullDateList] = useState([]);
   const [dateList, setDateList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
+  const getAllDates = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/dates`)
       .then((response) => {
         setDateList(response.data);
+        setFullDateList(response.data);
+        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    getAllDates();
   }, []);
+
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value);
+    const filteredArray = fullDateList.filter((elm) => {
+      return elm.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    if (e.target.value === "") {
+      getAllDates();
+    } else {
+      setDateList(filteredArray);
+    }
+  };
 
   return (
     <div id="date-list-page">
       <h1>Date List</h1>
-
+      <label>
+        Search a Date
+        <input
+          type="text"
+          name="searchQuery"
+          value={searchQuery}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
       <Link to={"/dates/create"}>
         <button>Add a Date</button>
       </Link>
