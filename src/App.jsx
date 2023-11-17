@@ -8,6 +8,7 @@ import Homepage from "./pages/Homepage";
 import AddDateForm from "./pages/AddDateForm";
 import DateDetails from "./pages/DateDetails";
 import EditDateDetails from "./pages/EditDateDetails";
+import UpdateDateForm from "./pages/UpdateDateForm";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/dates/create" element={<AddDateForm />} />
         <Route path="/dates/:dateId/edit" element={<EditDateDetails />} />
         <Route path="/dates/:dateId" element={<DateDetails />} />
+        <Route path="/dates/:dateId/edit" element={<UpdateDateForm />} />
       </Routes>
     </>
   );
