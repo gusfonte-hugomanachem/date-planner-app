@@ -12,7 +12,6 @@ function DateList() {
       .get(`${import.meta.env.VITE_API_URL}/dates`)
       .then((response) => {
         setDateList(response.data);
-        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -28,17 +27,20 @@ function DateList() {
       </Link>
 
       <div className="dates-container">
+        
         {dateList.map((date) => {
           return (
+            
             <div key={date.id} className="date-box">
               <p>Title: {date.title}</p>
               <p>Time: {date.time}</p>
               <p>Place: {date.place}</p>
               <p>Description: {date.description}</p>
-              <Link to={"/"}>
+              <Link to={`/dates/${date.id}`}>
                 <button>See details</button>
               </Link>
             </div>
+
           );
         })}
       </div>
