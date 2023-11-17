@@ -9,15 +9,15 @@ function DateList() {
   const [dateList, setDateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const [activities, setActivities] = useState({});
 
-  
   const getAllDates = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/dates`)
       .then((response) => {
         setDateList(response.data);
         setFullDateList(response.data);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -26,6 +26,22 @@ function DateList() {
 
   useEffect(() => {
     getAllDates();
+  }, []);
+
+  const getAllActivities = () => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/activities`)
+      .then((response) => {
+        setActivities(response.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getAllActivities();
   }, []);
 
   const handleChange = (e) => {
@@ -61,7 +77,8 @@ function DateList() {
       <div className="dates-container">
         {loading && <h1>Loading...</h1>}
 
-        {!loading && dateList.map((date) => {
+        {!loading &&
+          dateList.map((date) => {
             return (
               <div key={date.id} className="date-box">
                 <p>Title: {date.title}</p>
@@ -71,6 +88,14 @@ function DateList() {
                 <Link to={`/dates/${date.id}`}>
                   <button>See details</button>
                 </Link>
+
+                <h3>
+                  {
+                    activities.filter((activity) => activity.dateId === date.id)
+                      .length
+                  }{" "}
+                  Activities
+                </h3>
               </div>
             );
           })}
