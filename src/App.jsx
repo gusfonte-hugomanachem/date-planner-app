@@ -19,7 +19,6 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/dates" element={<DateList />} />
         <Route path="/dates/create" element={<AddDateForm />} />
-        <Route path="/dates/:dateId/edit" element={<EditDateDetails />} />
         <Route path="/dates/:dateId" element={<DateDetails />} />
         <Route path="/dates/:dateId/edit" element={<UpdateDateForm />} />
       </Routes>
