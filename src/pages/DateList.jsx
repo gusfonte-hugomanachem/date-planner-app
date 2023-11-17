@@ -15,7 +15,6 @@ function DateList() {
       .then((response) => {
         setDateList(response.data);
         setFullDateList(response.data);
-        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
