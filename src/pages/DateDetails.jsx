@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import "../App.css";
@@ -27,7 +28,10 @@ function DateDetails() {
       <p>Place: {date.place}</p>
       <p>Description: {date.description}</p>
 
-      <button>Edit</button>
+      <Link to={`/dates/${date.id}/edit`}>
+        <button>Edit</button>
+      </Link>
+      
       <button>Delete</button>
     </div>
   );
