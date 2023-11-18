@@ -1,9 +1,13 @@
+import Footer from "../components/Footer";
+
 import "../App.css";
 
-function Homepage() {
+function Homepage () {
   return (
     <div id="home-page">
       <h1>HOMEPAGE</h1>
+      
+      <Footer />
     </div>
   );
 }
