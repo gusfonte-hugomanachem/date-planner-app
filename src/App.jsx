@@ -10,6 +10,7 @@ import DateDetails from "./pages/DateDetails";
 import UpdateDateForm from "./pages/UpdateDateForm";
 import ActivityDetails from "./pages/ActivityDetails";
 import UpdateActivityForm from "./pages/UpdateActivityForm";
+import AddActivityForm from "./pages/AddActivityForm";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/dates/:dateId/edit" element={<UpdateDateForm />} />
         <Route path="/dates/:dateId/activity/:activityId" element={<ActivityDetails/>} ></Route>
         <Route path="/dates/:dateId/activity/:activityId/edit" element={<UpdateActivityForm/>}></Route>
+        <Route path="/dates/:dateId/activity/create" element={<AddActivityForm/>}></Route>
       </Routes>
     </>
   );
