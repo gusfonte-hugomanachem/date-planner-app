@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 function ActivityDetails () {
@@ -30,7 +30,7 @@ function ActivityDetails () {
             <div className="ActivityDetails-activity">
                 <p>Activity Details :</p>
                 <p>Title :{activity.title}</p>
-                <button>Edit</button>
+                <Link to={`/dates/${dateId}/activity/${activityId}/edit`}><button>Edit</button></Link>
                 <button>Delete</button>
             </div>   
         )}
