@@ -82,7 +82,7 @@ function DateDetails() {
                 return (
                   <div className="DateDetails-activity">
                     <p>{dateActivity.title}</p>
-                    <Link to={`/dates/${dateId}/activities/${dateActivity.id}`}>
+                    <Link to={`/dates/${dateId}/activity/${dateActivity.id}`}>
                       <button>See activity details</button>
                     </Link>
                   </div>
