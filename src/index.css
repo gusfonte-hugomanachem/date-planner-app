@@ -47,9 +47,35 @@ table {
 	border-spacing: 0;
 }
 
-.DateDetails-activity{
+.DateDetails-activity-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.DateDetails-activity-list {
 	margin: 10px;
 	border : 1px solid grey;
 	display: flex;
 	justify-content: space-between;
+}
+
+
+.ActivityDetails {
+	display: flex;
+	justify-content: center;
+}
+
+.ActivityDetails-activity {
+	text-align: center;
+	width: fit-content;
+	margin: 10px;
+	padding: 10px;
+	border : 1px solid grey;
+}
+
+.ActivityDetails-activity button {
+	text-align: center;
+	width: fit-content;
+	margin: 10px;
+	padding: 10px;
 }
