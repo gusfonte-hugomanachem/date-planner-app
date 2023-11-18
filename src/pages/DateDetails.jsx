@@ -77,10 +77,13 @@ function DateDetails() {
           ) : (
             <div>
               <hr />
-              <p>Related activities :</p>
+              <div className="DateDetails-activity-header">
+                <p>Related activities :</p>
+                <Link to={`/dates/${dateId}/activity/create`}><button>Add an activity</button></Link>
+              </div>
               {dateActivities.map((dateActivity) => {
                 return (
-                  <div className="DateDetails-activity">
+                  <div className="DateDetails-activity-list">
                     <p>{dateActivity.title}</p>
                     <Link to={`/dates/${dateId}/activity/${dateActivity.id}`}>
                       <button>See activity details</button>
