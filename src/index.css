@@ -53,3 +53,24 @@ table {
 	display: flex;
 	justify-content: space-between;
 }
+
+
+.ActivityDetails {
+	display: flex;
+	justify-content: center;
+}
+
+.ActivityDetails-activity {
+	text-align: center;
+	width: fit-content;
+	margin: 10px;
+	padding: 10px;
+	border : 1px solid grey;
+}
+
+.ActivityDetails-activity button {
+	text-align: center;
+	width: fit-content;
+	margin: 10px;
+	padding: 10px;
+}
