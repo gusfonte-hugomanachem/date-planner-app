@@ -1,7 +1,7 @@
 function Footer () {
     return (
         <>
-        <p>© 2023 | Date Flow Team | Gustavo & Hugo</p>
+        <p>© 2023 Date Flow | Gustavo & Hugo</p>
         <p>JS | React | Node | Tailwind</p>
         </>
     )
