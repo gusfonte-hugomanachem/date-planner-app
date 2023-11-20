@@ -71,9 +71,26 @@ function ActivityDetails() {
             <div>
               <p>Checklist :</p>
               {checklist.checklist.map((item) => {
-                return <li>{item[0]}</li>;
+                return (
+                  <li>
+                    {item[1] === false ? (
+                      <div>
+                        {item[0]}
+                        <button>&#9989;</button>
+                        <button>&#10060;</button>
+                      </div>
+                    ) : (
+                      <div>
+                        {item[0]}
+                        <button>&#10060;</button>
+                      </div>
+                    )}
+                  </li>
+                );
               })}
-              <button>Edit checklist</button>
+              <div>
+                <button>Add an item</button>
+              </div>
               <button>Delete checklist</button>
             </div>
           )}
