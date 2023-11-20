@@ -95,4 +95,5 @@ li{
 
 .date-box-likes {
 	display: flex;
+	height:fit-content;
 }
