@@ -30,8 +30,8 @@ function ActivityDetails() {
   const deleteActivity = () => {
     axios
       .delete(`${import.meta.env.VITE_API_URL}/activities/${activityId}`)
-      .then((response) => {
-        navigate(-1);
+      .then(() => {
+        navigate(`/dates/${dateId}`);
       })
       .catch((err) => console.log("error to delete activity : ", err));
   };
