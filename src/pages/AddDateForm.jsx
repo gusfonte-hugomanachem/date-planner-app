@@ -13,10 +13,10 @@ function AddDateForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newDate = { title, description, place, time };
+    const newDate = { title, description, place, time, likes : 0 };
     axios
       .post(`${import.meta.env.VITE_API_URL}/dates`, newDate)
-      .then((response) => {
+      .then(() => {
         navigate(-1);
       })
       .catch((error) => console.log("error to post new date : ", error));

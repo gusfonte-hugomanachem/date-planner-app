@@ -7,7 +7,7 @@ import "../App.css";
 function DateDetails() {
   const [date, setDate] = useState(null);
   const [dateActivities, setDateActivities] = useState(null);
-
+  const [likesCounter, setLikesCounter] = useState(0);
   const { dateId } = useParams();
   const navigate = useNavigate();
 
@@ -16,9 +16,10 @@ function DateDetails() {
       .get(`${import.meta.env.VITE_API_URL}/dates/${dateId}`)
       .then((response) => {
         setDate(response.data);
+        setLikesCounter(response.data.likes);
       })
       .catch((err) => {
-        console.log("error to get date details : ",err);
+        console.log("error to get date details : ", err);
       });
   };
 
@@ -51,8 +52,22 @@ function DateDetails() {
       await axios.delete(`${import.meta.env.VITE_API_URL}/dates/${dateId}`);
       navigate(-1);
     } catch (err) {
-      console.log("error to delete date : ",err);
+      console.log("error to delete date : ", err);
     }
+  };
+
+  const incrementLikesCounter = () => {
+    const newLikesCounter = likesCounter + 1;
+
+    const updatedDate = { ...date };
+    updatedDate.likes = newLikesCounter;
+
+    axios
+      .put(`${import.meta.env.VITE_API_URL}/dates/${dateId}`, updatedDate)
+      .then(() => {
+        getDateDetails();
+      })
+      .catch((err) => console.log("error to put new likes counter : ", err));
   };
 
   return (
@@ -61,16 +76,25 @@ function DateDetails() {
         <p>Date details loading...</p>
       ) : (
         <div className="date-box">
-          <p>Title: {date.title}</p>
-          <p>Time: {date.time}</p>
-          <p>Place: {date.place}</p>
-          <p>Description: {date.description}</p>
+          <div className="date-box-date">
+            <div className="date-box-date-infos">
+              <p>Title: {date.title}</p>
+              <p>Time: {date.time}</p>
+              <p>Place: {date.place}</p>
+              <p>Description: {date.description}</p>
 
-          <Link to={`/dates/${date.id}/edit`}>
-            <button>Edit</button>
-          </Link>
+              <Link to={`/dates/${date.id}/edit`}>
+                <button>Edit</button>
+              </Link>
 
-          <button onClick={() => deleteDate()}>Delete</button>
+              <button onClick={() => deleteDate()}>Delete</button>
+            </div>
+            <div className="date-box-likes">
+              <p>{likesCounter} Likes</p>
+              <button onClick={incrementLikesCounter}>&#128077;</button>
+            </div>
+          </div>
+
           {dateActivities === null ? (
             <p>Related activities loading...</p>
           ) : (
@@ -78,7 +102,9 @@ function DateDetails() {
               <hr />
               <div className="DateDetails-activity-header">
                 <p>Related activities :</p>
-                <Link to={`/dates/${dateId}/activity/create`}><button>Add an activity</button></Link>
+                <Link to={`/dates/${dateId}/activity/create`}>
+                  <button>Add an activity</button>
+                </Link>
               </div>
               {dateActivities.map((dateActivity) => {
                 return (

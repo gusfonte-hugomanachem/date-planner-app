@@ -87,3 +87,8 @@ li{
 .checklist-item-checked {
 	text-decoration:line-through;
 }
+
+.date-box-date {
+	display : flex;
+	justify-content: space-between;
+}
