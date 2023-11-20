@@ -2,7 +2,8 @@
 
 ## Description
 
-To do
+A collaborative date planner app for all your date planning needs!
+Whether it be a romantic, casual or formal plan, Date Flow allows users to go as in-depth as needed, creating multiple activities, nested checklists, or keeping your plan a little more vague as you hammer out the details.
 
 ## Keywords/ideas
 
