@@ -7,13 +7,14 @@ function AddDateForm() {
   const [description, setDescription] = useState("");
   const [place, setPlace] = useState("");
   const [time, setTime] = useState(new Date());
+  const [cost, setCost] = useState(0);
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newDate = { title, description, place, time, likes : 0 };
+    const newDate = { title, description, place, time, likes : 0, cost : parseInt(cost) };
     axios
       .post(`${import.meta.env.VITE_API_URL}/dates`, newDate)
       .then(() => {
@@ -67,6 +68,17 @@ function AddDateForm() {
             name="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Cost :
+          <input
+            type="number"
+            name="cost"
+            value={cost}
+            min={0}
+            onChange={(e) => setCost(e.target.value)}
           />
         </label>
 
