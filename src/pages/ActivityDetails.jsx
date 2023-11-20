@@ -63,9 +63,23 @@ function ActivityDetails() {
       )
       .then(() => {
         setChecklist(updatedChecklist);
-        console.log("item removed")
+        console.log("item removed");
       })
       .catch((err) => console.log("error to remove item : ", err));
+  };
+
+  const createChecklist = () => {
+    const newChecklist = {
+      activityId: activityId,
+      checklist: [],
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/checklists`, newChecklist)
+      .then(() => {
+        getRelatedChecklist();
+      })
+      .catch((err) => console.log("error to post new checklist : ", err));
   };
 
   return (
@@ -80,29 +94,39 @@ function ActivityDetails() {
           {checklist === null || checklist === undefined ? (
             <div>
               <p>No related checklist. Want to create one ?</p>
-              <button>Add a checklist</button>
+              <button onClick={createChecklist}>Add a checklist</button>
             </div>
           ) : (
             <div>
               <p>Checklist :</p>
-              {checklist.checklist.map((item, i) => {
-                return (
-                  <li>
-                    {item[1] === false ? (
-                      <div>
-                        {item[0]}
-                        <button>&#9989;</button>
-                        <button onClick={() => removeItem(i)}>&#10060;</button>
-                      </div>
-                    ) : (
-                      <div>
-                        {item[0]}
-                        <button onClick={() => removeItem(i)}>&#10060;</button>
-                      </div>
-                    )}
-                  </li>
-                );
-              })}
+              {checklist.checklist.length === 0 ? (
+                <p>No items... Start by adding one </p>
+              ) : (
+                <div>
+                  {checklist.checklist.map((item, i) => {
+                    return (
+                      <li>
+                        {item[1] === false ? (
+                          <div>
+                            {item[0]}
+                            <button>&#9989;</button>
+                            <button onClick={() => removeItem(i)}>
+                              &#10060;
+                            </button>
+                          </div>
+                        ) : (
+                          <div>
+                            {item[0]}
+                            <button onClick={() => removeItem(i)}>
+                              &#10060;
+                            </button>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })}
+                </div>
+              )}
               <div>
                 <Link to={`/dates/${dateId}/activity/${activityId}/addItem`}>
                   <button>Add an item</button>
