@@ -32,8 +32,7 @@ function AddChecklistItem() {
   const deleteActivity = () => {
     axios
       .delete(`${import.meta.env.VITE_API_URL}/activities/${activityId}`)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         navigate(-1);
       })
       .catch((err) => console.log("error to delete activity : ", err));

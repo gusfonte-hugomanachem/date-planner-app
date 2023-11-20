@@ -20,7 +20,6 @@ const navigate = useNavigate();
       .post(`${import.meta.env.VITE_API_URL}/activities`, newActivity)
       .then((response) => {
         navigate(-1);
-        console.log(response);
       })
       .catch((error) => console.log("error to post new activity : ", error));
   };

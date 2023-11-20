@@ -83,3 +83,7 @@ table {
 li{
 	list-style: none;
 }
+
+.checklist-item-checked {
+	text-decoration:line-through;
+}

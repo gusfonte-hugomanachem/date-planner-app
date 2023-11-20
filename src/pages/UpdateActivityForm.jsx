@@ -37,7 +37,6 @@ function UpdateActivityForm() {
     axios
       .put(`${import.meta.env.VITE_API_URL}/activities/${activityId}`, updatedActivity)
       .then((response) => {
-        console.log(response);
         navigate(-1);
         
     })

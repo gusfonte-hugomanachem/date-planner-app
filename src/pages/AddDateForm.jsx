@@ -18,7 +18,6 @@ function AddDateForm() {
       .post(`${import.meta.env.VITE_API_URL}/dates`, newDate)
       .then((response) => {
         navigate(-1);
-        console.log(response);
       })
       .catch((error) => console.log("error to post new date : ", error));
   };
