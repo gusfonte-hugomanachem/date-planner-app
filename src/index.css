@@ -97,3 +97,9 @@ li{
 	display: flex;
 	height:fit-content;
 }
+
+.Datelist-search-tools {
+	border : 1px solid black;
+	padding: 5px;
+	margin : 10px;
+}

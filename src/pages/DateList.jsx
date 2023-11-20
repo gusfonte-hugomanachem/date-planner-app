@@ -10,7 +10,7 @@ function DateList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [activities, setActivities] = useState(null);
-
+  const [sortOption, setSortOption] = useState(null);
   const getAllDates = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/dates`)
@@ -56,20 +56,58 @@ function DateList() {
     }
   };
 
+  useEffect(() => {
+    if (sortOption === "likes-decreasing") {
+      const sortedDateList = [...dateList];
+      sortedDateList.sort(function (a, b) {
+        return b.likes - a.likes;
+      });
+      setDateList(sortedDateList);
+    } else if (sortOption === "cost-decreasing") {
+      const sortedDateList = [...dateList];
+      sortedDateList.sort(function (a, b) {
+        return b.cost - a.cost;
+      });
+      setDateList(sortedDateList);
+    } else if (sortOption === "cost-increasing") {
+      const sortedDateList = [...dateList];
+      sortedDateList.sort(function (a, b) {
+        return a.cost - b.cost;
+      });
+      setDateList(sortedDateList);
+    } else {
+    }
+  }, [sortOption]);
+
   return (
     <div id="date-list-page">
       <h1>Date List</h1>
+      <div className="Datelist-search-tools">
+        <label>
+          Search a Date
+          <input
+            type="text"
+            name="searchQuery"
+            value={searchQuery}
+            onChange={handleChange}
+          />
+        </label>
 
-      <label>
-        Search a Date
-        <input
-          type="text"
-          name="searchQuery"
-          value={searchQuery}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
+        <label>
+          Sort:
+          <select
+            name="sort-select"
+            id="sort-select"
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value=""></option>
+            <option value="likes-decreasing">Most liked</option>
+            <option value="cost-decreasing"> Cost : High to Low </option>
+            <option value="cost-increasing"> Cost : Low to High </option>
+          </select>
+        </label>
+      </div>
+
       <Link to={"/dates/create"}>
         <button>Add a Date</button>
       </Link>
