@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function ActivityDetails() {
+function AddChecklistItem() {
   const { dateId } = useParams();
   const { activityId } = useParams();
 
   const [activity, setActivity] = useState(null);
   const [checklist, setChecklist] = useState(undefined);
+
+  const [itemName, setItemName] = useState("");
 
   const navigate = useNavigate();
 
@@ -53,6 +55,20 @@ function ActivityDetails() {
       .catch((err) => console.log("error to get activity details : ", err));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const updatedChecklist = { ...checklist };
+    updatedChecklist.checklist.push([itemName, false]);
+    axios
+      .put(
+        `${import.meta.env.VITE_API_URL}/checklists/${checklist.id}`,
+        updatedChecklist
+      )
+      .then(() => navigate(`/dates/${dateId}/activity/${activityId}`))
+      .catch((err) => console.log("error to put updated checklist : ", err));
+  };
+
   return (
     <div className="ActivityDetails">
       {activity === null ? (
@@ -71,47 +87,29 @@ function ActivityDetails() {
             <div>
               <p>Checklist :</p>
               {checklist.checklist.map((item) => {
-                return (
-                  <li>
-                    {item[1] === false ? (
-                      <div>
-                        {item[0]}
-                        <button>&#9989;</button>
-                        <button>&#10060;</button>
-                      </div>
-                    ) : (
-                      <div>
-                        {item[0]}
-                        <button>&#10060;</button>
-                      </div>
-                    )}
-                  </li>
-                );
+                return <li>{item[0]}</li>;
               })}
-              <div>
-                <Link to={`/dates/${dateId}/activity/${activityId}/addItem`}>
-                  <button>Add an item</button>
-                </Link>
-              </div>
-              <button>Delete checklist</button>
+              <form onSubmit={handleSubmit}>
+                <label>
+                  New Item :
+                  <input
+                    type="text"
+                    name="itemName"
+                    value={itemName}
+                    onChange={(e) => {
+                      setItemName(e.target.value);
+                    }}
+                  />
+                </label>
+                <button>Add</button>
+              </form>
             </div>
           )}
-
           <hr />
-          <Link to={`/dates/${dateId}/activity/${activityId}/edit`}>
-            <button>Edit</button>
-          </Link>
-          <button
-            onClick={() => {
-              deleteActivity();
-            }}
-          >
-            Delete
-          </button>
         </div>
       )}
     </div>
   );
 }
 
-export default ActivityDetails;
+export default AddChecklistItem;
