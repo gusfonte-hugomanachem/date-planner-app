@@ -87,6 +87,7 @@ function DateList() {
                     <p>Time: {date.time}</p>
                     <p>Place: {date.place}</p>
                     <p>Description: {date.description}</p>
+                    <p>Cost : {date.cost}€</p>
                     <Link to={`/dates/${date.id}`}>
                       <button>See details</button>
                     </Link>
