@@ -82,6 +82,14 @@ function ActivityDetails() {
       .catch((err) => console.log("error to post new checklist : ", err));
   };
 
+  const deleteChecklist = () => {
+    axios.delete(`${import.meta.env.VITE_API_URL}/checklists/${checklist.id}`)
+      .then(() => {
+        getRelatedChecklist();
+      })
+      .catch(err => console.log("error to delete checklist : ",err))
+  }
+
   return (
     <div className="ActivityDetails">
       {activity === null ? (
@@ -132,7 +140,9 @@ function ActivityDetails() {
                   <button>Add an item</button>
                 </Link>
               </div>
-              <button>Delete checklist</button>
+              <button  onClick={() => {
+              deleteChecklist();
+            }}>Delete checklist</button>
             </div>
           )}
 
