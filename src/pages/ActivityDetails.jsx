@@ -53,6 +53,21 @@ function ActivityDetails() {
       .catch((err) => console.log("error to get activity details : ", err));
   };
 
+  const removeItem = (i) => {
+    const updatedChecklist = { ...checklist };
+    updatedChecklist.checklist.splice(i, 1);
+    axios
+      .put(
+        `${import.meta.env.VITE_API_URL}/checklists/${checklist.id}`,
+        updatedChecklist
+      )
+      .then(() => {
+        setChecklist(updatedChecklist);
+        console.log("item removed")
+      })
+      .catch((err) => console.log("error to remove item : ", err));
+  };
+
   return (
     <div className="ActivityDetails">
       {activity === null ? (
@@ -70,19 +85,19 @@ function ActivityDetails() {
           ) : (
             <div>
               <p>Checklist :</p>
-              {checklist.checklist.map((item) => {
+              {checklist.checklist.map((item, i) => {
                 return (
                   <li>
                     {item[1] === false ? (
                       <div>
                         {item[0]}
                         <button>&#9989;</button>
-                        <button>&#10060;</button>
+                        <button onClick={() => removeItem(i)}>&#10060;</button>
                       </div>
                     ) : (
                       <div>
                         {item[0]}
-                        <button>&#10060;</button>
+                        <button onClick={() => removeItem(i)}>&#10060;</button>
                       </div>
                     )}
                   </li>
