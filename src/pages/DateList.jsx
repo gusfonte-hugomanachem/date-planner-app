@@ -92,7 +92,8 @@ function DateList() {
                     </Link>
                   </div>
                   <div className="date-box-likes">
-                    <p>&#128077; {date.likes}</p>
+                    <div>{date.likes} </div>
+                    <div>&#128077; </div>
                   </div>
                 </div>
                 {activities === null ? (

@@ -92,3 +92,7 @@ li{
 	display : flex;
 	justify-content: space-between;
 }
+
+.date-box-likes {
+	display: flex;
+}
