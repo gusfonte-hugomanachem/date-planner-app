@@ -20,7 +20,7 @@ function DateList() {
         setLoading(false);
       })
       .catch((err) => {
-        console.log("error to get all dates : ",err);
+        console.log("error to get all dates : ", err);
       });
   };
 
@@ -36,7 +36,7 @@ function DateList() {
         setLoading(false);
       })
       .catch((err) => {
-        console.log("error to get all activities",err);
+        console.log("error to get all activities", err);
       });
   };
 
@@ -75,16 +75,26 @@ function DateList() {
       </Link>
 
       <div className="dates-container">
-        {dateList === null ? <h1>Loading...</h1> : (dateList.map((date) => {
+        {dateList === null ? (
+          <h1>Loading...</h1>
+        ) : (
+          dateList.map((date) => {
             return (
               <div key={date.id} className="date-box">
-                <p>Title: {date.title}</p>
-                <p>Time: {date.time}</p>
-                <p>Place: {date.place}</p>
-                <p>Description: {date.description}</p>
-                <Link to={`/dates/${date.id}`}>
-                  <button>See details</button>
-                </Link>
+                <div className="date-box-date">
+                  <div className="date-box-general-infos">
+                    <p>Title: {date.title}</p>
+                    <p>Time: {date.time}</p>
+                    <p>Place: {date.place}</p>
+                    <p>Description: {date.description}</p>
+                    <Link to={`/dates/${date.id}`}>
+                      <button>See details</button>
+                    </Link>
+                  </div>
+                  <div className="date-box-likes">
+                    <p>&#128077; {date.likes}</p>
+                  </div>
+                </div>
                 {activities === null ? (
                   <p>Loading activities...</p>
                 ) : (
@@ -99,8 +109,8 @@ function DateList() {
                 )}
               </div>
             );
-          }))}
-        
+          })
+        )}
       </div>
     </div>
   );

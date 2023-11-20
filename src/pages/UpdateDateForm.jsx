@@ -8,6 +8,7 @@ function UpdateDateForm() {
   const [description, setDescription] = useState("");
   const [place, setPlace] = useState("");
   const [time, setTime] = useState(new Date());
+  const [likes, setLikes] = useState(0)
 
   const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ function UpdateDateForm() {
         setDescription(response.data.description);
         setTime(response.data.time);
         setPlace(response.data.place);
+        setLikes(response.data.likes);
       })
       .catch((err) => {
         console.log("error to get date details : ", err);
@@ -34,10 +36,10 @@ function UpdateDateForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const updatedDate = { title, description, place, time };
+    const updatedDate = { title, description, place, time, likes };
     axios
       .put(`${import.meta.env.VITE_API_URL}/dates/${dateId}`, updatedDate)
-      .then((response) => {
+      .then(() => {
         navigate(-1);
         
     })
