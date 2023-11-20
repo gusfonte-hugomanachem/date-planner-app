@@ -38,7 +38,6 @@ function UpdateDateForm() {
     axios
       .put(`${import.meta.env.VITE_API_URL}/dates/${dateId}`, updatedDate)
       .then((response) => {
-        console.log(response);
         navigate(-1);
         
     })

@@ -18,7 +18,7 @@ function DateDetails() {
         setDate(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error to get date details : ",err);
       });
   };
 
@@ -49,10 +49,9 @@ function DateDetails() {
   const deleteDate = async () => {
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}/dates/${dateId}`);
-      console.log("date deleted");
       navigate(-1);
     } catch (err) {
-      console.log(err);
+      console.log("error to delete date : ",err);
     }
   };
 

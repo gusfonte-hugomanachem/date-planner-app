@@ -31,7 +31,6 @@ function ActivityDetails() {
     axios
       .delete(`${import.meta.env.VITE_API_URL}/activities/${activityId}`)
       .then((response) => {
-        console.log(response);
         navigate(-1);
       })
       .catch((err) => console.log("error to delete activity : ", err));
@@ -63,7 +62,6 @@ function ActivityDetails() {
       )
       .then(() => {
         setChecklist(updatedChecklist);
-        console.log("item removed");
       })
       .catch((err) => console.log("error to remove item : ", err));
   };
@@ -83,11 +81,26 @@ function ActivityDetails() {
   };
 
   const deleteChecklist = () => {
-    axios.delete(`${import.meta.env.VITE_API_URL}/checklists/${checklist.id}`)
+    axios
+      .delete(`${import.meta.env.VITE_API_URL}/checklists/${checklist.id}`)
       .then(() => {
         getRelatedChecklist();
       })
-      .catch(err => console.log("error to delete checklist : ",err))
+      .catch((err) => console.log("error to delete checklist : ", err));
+  };
+
+  const checkAnItem = (i) => {
+    const updatedChecklist = { ...checklist };
+    updatedChecklist.checklist[i][1] = true;
+    axios
+      .put(
+        `${import.meta.env.VITE_API_URL}/checklists/${checklist.id}`,
+        updatedChecklist
+      )
+      .then(() => {
+        setChecklist(updatedChecklist);
+      })
+      .catch((err) => console.log("error to check item : ", err));
   }
 
   return (
@@ -114,17 +127,21 @@ function ActivityDetails() {
                   {checklist.checklist.map((item, i) => {
                     return (
                       <li>
-                        {item[1] === false ? (
+                        {item[1] === true ? (
                           <div>
-                            {item[0]}
-                            <button>&#9989;</button>
+                            <span className="checklist-item-checked">
+                              {item[0]}
+                            </span>
                             <button onClick={() => removeItem(i)}>
                               &#10060;
                             </button>
                           </div>
                         ) : (
                           <div>
-                            {item[0]}
+                            <span className="checklist-item-unchecked">
+                              {item[0]}
+                            </span>
+                            <button onClick={() => {checkAnItem(i)}}>&#9989;</button>
                             <button onClick={() => removeItem(i)}>
                               &#10060;
                             </button>
@@ -140,9 +157,13 @@ function ActivityDetails() {
                   <button>Add an item</button>
                 </Link>
               </div>
-              <button  onClick={() => {
-              deleteChecklist();
-            }}>Delete checklist</button>
+              <button
+                onClick={() => {
+                  deleteChecklist();
+                }}
+              >
+                Delete checklist
+              </button>
             </div>
           )}
 

@@ -20,7 +20,7 @@ function DateList() {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error to get all dates : ",err);
       });
   };
 
@@ -36,7 +36,7 @@ function DateList() {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error to get all activities",err);
       });
   };
 
