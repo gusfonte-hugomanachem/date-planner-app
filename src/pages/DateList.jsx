@@ -217,7 +217,7 @@ function DateList() {
                         {date.time}
                       </h2>
                     </div>
-                    <p>Location: {date.place}</p>
+                    <p>Location: {date.location.displayedPlace}</p>
                     <p>Description: {date.description}</p>
                   </div>
                   <div className="flex justify-between items-end">

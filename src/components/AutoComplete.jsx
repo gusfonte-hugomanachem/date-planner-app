@@ -15,9 +15,11 @@ const AutoComplete = (props) => {
     );
     autoCompleteRef.current.addListener("place_changed", async function () {
       const place = await autoCompleteRef.current.getPlace();
-      props.callbackToSetPlace(place.formatted_address)
+      props.callbackToSetDisplayedPlace(place.formatted_address)
+      props.callbackToSetLat(place.geometry.viewport.eb.hi)
+      props.callbackToSetLon(place.geometry.viewport.La.hi)
     });
   }, []);
-  return <input ref={inputRef} type="text" name="place" value={props.initialValue} onChange={(e) => props.callbackToSetPlace(e.target.value)} />;
+  return <input ref={inputRef} type="text" name="place" value={props.initialValue} onChange={(e) => props.callbackToSetDisplayedPlace(e.target.value)} />;
 };
 export default AutoComplete;
