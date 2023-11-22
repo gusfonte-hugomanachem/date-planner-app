@@ -1,5 +1,6 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import axios from "axios";
 
 import "../App.css";
@@ -10,6 +11,7 @@ function DateDetails() {
   const [likesCounter, setLikesCounter] = useState(0);
   const { dateId } = useParams();
   const navigate = useNavigate();
+  const [center, setCenter] = useState(null);
 
   const getDateDetails = () => {
     axios
@@ -17,6 +19,10 @@ function DateDetails() {
       .then((response) => {
         setDate(response.data);
         setLikesCounter(response.data.likes);
+        setCenter({
+          lat: response.data.location.lat,
+          lng: response.data.location.lon,
+        });
       })
       .catch((err) => {
         console.log("error to get date details : ", err);
@@ -80,7 +86,18 @@ function DateDetails() {
             <div className="date-box-date-infos">
               <p>Title: {date.title}</p>
               <p>Time: {date.time}</p>
-              <p>Place: {date.place}</p>
+              <p>Place: {date.location.displayedPlace}</p>
+              {center.lat === null || center.lon === null ? (
+                ""
+              ) : (
+                <GoogleMap
+                  zoom={15}
+                  center={center}
+                  mapContainerClassName="map-container"
+                >
+                  <MarkerF position={center} />
+                </GoogleMap>
+              )}
               <p>Description: {date.description}</p>
               <p>Cost : {date.cost}€</p>
               <Link to={`/dates/${date.id}/edit`}>
