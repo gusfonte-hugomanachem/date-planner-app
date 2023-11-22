@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AutoComplete from "../components/AutoComplete";
 
 function AddDateForm() {
   const [title, setTitle] = useState("");
@@ -52,13 +53,7 @@ function AddDateForm() {
 
         <label>
           Place :
-          <input
-            type="text"
-            name="place"
-            value={place}
-            placeholder="enter the title"
-            onChange={(e) => setPlace(e.target.value)}
-          />
+          <AutoComplete callbackToSetPlace = {setPlace}/>
         </label>
 
         <label>
