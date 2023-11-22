@@ -30,6 +30,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	width: 100%;
+	height: auto;
 }
 ol, ul {
 	list-style: none;
@@ -47,7 +49,7 @@ table {
 	border-spacing: 0;
 }
 
-.DateDetails-activity-header {
+/* .DateDetails-activity-header {
 	display: flex;
 	justify-content: space-between;
 }
@@ -102,4 +104,8 @@ li{
 	border : 1px solid black;
 	padding: 5px;
 	margin : 10px;
-}
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
