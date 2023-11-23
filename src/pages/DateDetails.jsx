@@ -1,6 +1,6 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
+import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import axios from "axios";
 
 import "../App.css";
@@ -158,23 +158,24 @@ function DateDetails() {
                 <div className="collapse-content flex flex-col gap-4">
                   {/* RENDER EACH ACTIVITY --- BUGGED */}
 
-                  {/* {dateActivities === null ? (
-                  <p>Related activities loading...</p>
+                  {dateActivities === null ? (
+                    <p>Related activities loading...</p>
                   ) : (
-                    
-                    
-                    {dateActivities.map((dateActivity) => {
-                      return (
-                        <div className="DateDetails-activity-list">
-                        <p>{dateActivity.title}</p>
-              <Link to={`/dates/${dateId}/activity/${dateActivity.id}`}>
-                <button>See activity details</button>
-                </Link>
-                </div>
-                );
-              })}
-              
-              )} */}
+                    <div>
+                      {dateActivities.map((dateActivity) => {
+                        return (
+                          <div className="DateDetails-activity-list">
+                            <p>{dateActivity.title}</p>
+                            <Link
+                              to={`/dates/${dateId}/activity/${dateActivity.id}`}
+                            >
+                              <button>See activity details</button>
+                            </Link>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
 
                   <Link to={`/dates/${dateId}/activity/create`} className="btn">
                     <button>Add an activity</button>
