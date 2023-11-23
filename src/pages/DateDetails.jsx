@@ -85,7 +85,7 @@ function DateDetails() {
           <div className="card card-compact w-3/5 bg-primary text-primary-content shadow-xl">
             <div className="card-body">
               <div className="flex justify-between card-title">
-                <section className="capitalize flex gap-3 items-center">
+                <section className="capitalize flex gap-3 items-center truncate">
                   {date.title}
                   <p className="flex items-center font-normal text-slate-200 text-base">
                     <svg
@@ -186,13 +186,14 @@ function DateDetails() {
           </div>
 
           {/* GOOGLE MAPS API --- BUGGED */}
-
-          <details className="collapse bg-primary-content text-primary">
-            <summary className="collapse-title text-xl font-medium">
-              See on map
-            </summary>
-            <div className="collapse-content">
-              {center.lat === null || center.lon === null ? (
+          <div>
+            <details className="collapse bg-primary-content text-primary">
+              <summary className="collapse-title text-xl min-w-min font-medium">
+                See on map
+              </summary>
+              <div className="collapse-content">
+                
+                {center.lat === null || center.lon === null ? (
                 ""
               ) : (
                 <GoogleMap
@@ -203,8 +204,9 @@ function DateDetails() {
                   <MarkerF position={center} />
                 </GoogleMap>
               )}
-            </div>
-          </details>
+              </div>
+            </details>
+          </div>
 
           {/* BUTTONS */}
           <div className="flex gap-4">
