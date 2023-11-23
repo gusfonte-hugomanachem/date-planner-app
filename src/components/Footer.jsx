@@ -17,13 +17,13 @@ function Footer() {
 
         <p className="font-bold">Date Flow</p>
 
-        <div className="divider lg:divider-horizontal divider-neutral opacity-50"></div> 
+        <div className="divider md:divider-horizontal divider-neutral opacity-50"></div> 
         
         <p>Gustavo & Hugo</p>
 
-        <div className="divider lg:divider-horizontal divider-neutral opacity-50"></div> 
+        <div className="divider md:divider-horizontal divider-neutral opacity-50"></div> 
         
-        <p>Copyright © 2023 - All rights reserved</p>
+        <p className=" text-base">Copyright © 2023 - All rights reserved</p>
       </aside>
     </footer>
   );
