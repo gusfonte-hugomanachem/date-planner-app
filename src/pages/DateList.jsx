@@ -111,12 +111,15 @@ function DateList() {
             <li>
               <details>
                 <summary>Theme</summary>
-                <ul className="p-2 bg-white">
+                <ul className="p-2 bg-white text-primary">
                   <li>
                     <a>Light</a>
                   </li>
                   <li>
                     <a>Cupcake</a>
+                  </li>
+                  <li>
+                    <a>Kawaii</a>
                   </li>
                   <li>
                     <a>Latte</a>
@@ -131,12 +134,10 @@ function DateList() {
         </div>
       </div>
 
-      {/* TITLE */}
-      {/* <h1 className="text-7xl">Date List</h1> */}
-
       {/* CONTROLS */}
       <div className="flex gap-10">
-        {/* NEW NAV */}
+        
+        {/* SEARCH NAV */}
         <div className="join">
           <div>
             <div>
@@ -162,7 +163,7 @@ function DateList() {
           </select>
           <button className="btn join-item">Search</button>
         </div>
-        {/* CREATE DATE BUTTON */} {/* ADD PLUS ICON */}
+        {/* CREATE DATE BUTTON */}
         <Link to={"/dates/create"} className="">
           <button className="btn items-center">
             <svg
@@ -183,7 +184,7 @@ function DateList() {
       </div>
 
       {/* DATE LIST CONTAINER */}
-      <div className="flex flex-col w-full items-center gap-6">
+      <div className="flex flex-col w-full items-center gap-6 mb-6">
         {/* LOADING */}
         {dateList === null ? (
           <span className="loading loading-spinner w-28 absolute top-1/2"></span>
@@ -198,8 +199,27 @@ function DateList() {
                 <div className="card-body">
                   <div>
                     <div className="flex justify-between card-title">
-                      <h2 className="grow-0 capitalize">{date.title}</h2>
-                      <h2 className="flex gap-2 grow-0">
+                      <section className="capitalize flex gap-3 items-center">
+                        {date.title}
+                      
+                        <p className="flex items-center font-normal text-slate-200 text-base">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      strokeWidth={1}
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      className="w-5 h-5 fill-red-600"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    {date.location.displayedPlace}
+                  </p>
+                      </section>
+                      <h2 className="flex gap-2 grow-0 items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -217,7 +237,6 @@ function DateList() {
                         {date.time}
                       </h2>
                     </div>
-                    <p>Location: {date.place}</p>
                     <p>Description: {date.description}</p>
                   </div>
                   <div className="flex justify-between items-end">
@@ -230,9 +249,9 @@ function DateList() {
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
-                          strokeWidth={1.5}
+                          strokeWidth={1}
                           stroke="currentColor"
-                          className="w-5 h-6 fill-red-700"
+                          className="w-5 h-6 fill-red-600"
                         >
                           <path
                             strokeLinecap="round"
@@ -245,20 +264,9 @@ function DateList() {
 
                       <div className="btn min-h-min h-7">
                         &#128178;
-                        {/* {date.cost}€ */}
                       </div>
                     </div>
                   </div>
-
-                  {/* {activities === null
-                ? (<p>Loading activities...</p>)
-                : (
-                  <h3>
-                    {activities.filter((activity) => activity.dateId === date.id).length}
-                    {" "}
-                    Activities
-                  </h3>
-                )} */}
                 </div>
               </div>
             );
