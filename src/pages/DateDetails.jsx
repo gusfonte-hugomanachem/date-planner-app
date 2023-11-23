@@ -1,6 +1,6 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
-import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
+/* import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api"; */
 import axios from "axios";
 
 import "../App.css";
@@ -127,10 +127,12 @@ function DateDetails() {
               </section>
 
               <section className="flex flex-row justify-between items-center gap-3">
-
                 <p className=" flex-grow-0">Cost : {date.cost}€</p>
 
-                <button onClick={incrementLikesCounter} className="flex flex-row items-center gap-1">
+                <button
+                  onClick={incrementLikesCounter}
+                  className="flex flex-row items-center gap-1"
+                >
                   {date.likes}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -138,24 +140,25 @@ function DateDetails() {
                     strokeWidth={1}
                     stroke="currentColor"
                     className="w-5 h-6 fill-red-600"
-                    >
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                      />
+                    />
                   </svg>
                 </button>
               </section>
 
-          {/* ACTIVITIES --- WORK IN PROGRESS */}
-          <details className="collapse bg-primary-content text-primary select-none">
-                
-                <summary className="collapse-title text-xl font-medium">Activities</summary>
-                <div className="collapse-content flex flex-col gap-4"> 
-                
-{/* 
-                {dateActivities === null ? (
+              {/* ACTIVITIES --- WORK IN PROGRESS */}
+              <details className="collapse bg-primary-content text-primary select-none">
+                <summary className="collapse-title text-xl font-medium">
+                  Activities
+                </summary>
+                <div className="collapse-content flex flex-col gap-4">
+                  {/* RENDER EACH ACTIVITY --- BUGGED */}
+                  
+                {/* {dateActivities === null ? (
                   <p>Related activities loading...</p>
                   ) : (
                     
@@ -171,32 +174,29 @@ function DateDetails() {
                 );
               })}
               
-              )}
-            */}
+              )} */}
+           
 
-
-
-                <Link to={`/dates/${dateId}/activity/create`} className="btn">
-                  <button>Add an activity</button>
-                </Link>
+                  <Link to={`/dates/${dateId}/activity/create`} className="btn">
+                    <button>Add an activity</button>
+                  </Link>
                 </div>
-
-          </details>
-
+              </details>
             </div>
           </div>
 
-            {center.lat === null || center.lon === null ? (
-              ""
-            ) : (
-              <GoogleMap
-                zoom={15}
-                center={center}
-                mapContainerClassName="map-container"
-              >
-                <MarkerF position={center} />
-              </GoogleMap>
-            )}
+          {/* GOOGLE MAPS API --- BUGGED */}
+          {center.lat === null || center.lon === null ? (
+            ""
+          ) : (
+            <GoogleMap
+              zoom={15}
+              center={center}
+              mapContainerClassName="map-container"
+            >
+              <MarkerF position={center} />
+            </GoogleMap>
+          )}
 
           {/* BUTTONS */}
           <div className="flex gap-4">
