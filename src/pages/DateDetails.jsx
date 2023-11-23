@@ -1,6 +1,6 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { useEffect, useState, useMemo } from "react";
-/* import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api"; */
+import { useEffect, useState } from "react";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import axios from "axios";
 
 import "../App.css";
@@ -79,7 +79,7 @@ function DateDetails() {
   return (
     <div className="h-full">
       {date === null ? (
-        <span className="loading loading-spinner w-28 absolute top-1/2"></span>
+        <span className="loading loading-spinner w-28 absolute left-1/3 top-1/2"></span>
       ) : (
         <div className="flex flex-col gap-6 justify-center items-center ">
           <div className="card card-compact w-3/5 bg-primary text-primary-content shadow-xl">
@@ -157,8 +157,8 @@ function DateDetails() {
                 </summary>
                 <div className="collapse-content flex flex-col gap-4">
                   {/* RENDER EACH ACTIVITY --- BUGGED */}
-                  
-                {/* {dateActivities === null ? (
+
+                  {/* {dateActivities === null ? (
                   <p>Related activities loading...</p>
                   ) : (
                     
@@ -175,7 +175,6 @@ function DateDetails() {
               })}
               
               )} */}
-           
 
                   <Link to={`/dates/${dateId}/activity/create`} className="btn">
                     <button>Add an activity</button>
@@ -186,17 +185,25 @@ function DateDetails() {
           </div>
 
           {/* GOOGLE MAPS API --- BUGGED */}
-          {center.lat === null || center.lon === null ? (
-            ""
-          ) : (
-            <GoogleMap
-              zoom={15}
-              center={center}
-              mapContainerClassName="map-container"
-            >
-              <MarkerF position={center} />
-            </GoogleMap>
-          )}
+
+          <details className="collapse bg-primary-content text-primary">
+            <summary className="collapse-title text-xl font-medium">
+              See on map
+            </summary>
+            <div className="collapse-content">
+              {center.lat === null || center.lon === null ? (
+                ""
+              ) : (
+                <GoogleMap
+                  zoom={15}
+                  center={center}
+                  mapContainerClassName="map-container"
+                >
+                  <MarkerF position={center} />
+                </GoogleMap>
+              )}
+            </div>
+          </details>
 
           {/* BUTTONS */}
           <div className="flex gap-4">
