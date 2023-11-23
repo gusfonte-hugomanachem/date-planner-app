@@ -67,10 +67,16 @@ function UpdateDateForm() {
   };
 
   return (
-    <div id="add-date-page">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title :
+    <div className="w-full flex flex-col items-center">
+      
+      <div className="card card-compact bg-primary w-3/4 text-primary-content shadow-xl">
+        <div className="card-body flex col gap-4">
+          <h2 className="card-title">Edit Date</h2>
+      
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        
+      <div className="flex justify-between">
+
           <input
             type="text"
             name="title"
@@ -79,41 +85,16 @@ function UpdateDateForm() {
             onChange={(e) => setTitle(e.target.value)}
             required
           />
-        </label>
 
-        <label>
-          Description :
-          <textarea
-            type="text"
-            name="description"
-            value={description}
-            placeholder="describe your date"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
 
-        <label>
-          Place :
-          <AutoComplete
-            initialValue={displayedPlace}
-            callbackToSetDisplayedPlace={setDisplayedPlace}
-            callbackToSetLat={setLat}
-            callbackToSetLon={setLon}
-          />
-        </label>
-
-        <label>
-          Time :
           <input
             type="date"
             name="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
-        </label>
 
-        <label>
-          Cost :
+
           <input
             type="number"
             name="cost"
@@ -121,10 +102,31 @@ function UpdateDateForm() {
             min={0}
             onChange={(e) => setCost(e.target.value)}
           />
-        </label>
 
-        <button type="submit">Update</button>
+</div>
+
+          <AutoComplete
+            initialValue={displayedPlace}
+            callbackToSetDisplayedPlace={setDisplayedPlace}
+            callbackToSetLat={setLat}
+            callbackToSetLon={setLon}
+          />
+
+
+          <textarea
+            type="text"
+            name="description"
+            value={description}
+            placeholder="describe your date"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+
+
+
+        <button type="submit" className="btn">Save</button>
       </form>
+      </div>
+      </div>
     </div>
   );
 }
