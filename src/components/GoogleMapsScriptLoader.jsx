@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 function GoogleMapsScriptLoader() {
+
  // let [state, setState] = useState(googleMapsScriptSrc ? "loading" : "idle");
 
   useEffect(() => {
@@ -13,31 +14,31 @@ function GoogleMapsScriptLoader() {
     //   setState("idle");
     //   return;
     // }
-    let script = document.querySelector(`script[src="${googleMapsScriptSrc}"]`);
+    //let script = document.querySelector(`script[src="${googleMapsScriptSrc}"]`);
 
-    const handleScript = (e) => {
-      setState(e.type === "load" ? "ready" : "error");
-    };
+    // const handleScript = (e) => {
+    //   setState(e.type === "load" ? "ready" : "error");
+    // };
 
-    if (!script) {
-      script = document.createElement("script");
-      script.type = "application/javascript";
-      script.src = googleMapsScriptSrc;
-      script.async = true;
-      document.body.appendChild(script);
-      script.addEventListener("load", handleScript);
-      script.addEventListener("error", handleScript);
-    }
+    // if (!script) {
+    //   script = document.createElement("script");
+    //   script.type = "application/javascript";
+    //   script.src = googleMapsScriptSrc;
+    //   script.async = true;
+    //   document.body.appendChild(script);
+    //   script.addEventListener("load", handleScript);
+    //   script.addEventListener("error", handleScript);
+    // }
 
-    script.addEventListener("load", handleScript);
-    script.addEventListener("error", handleScript);
+    // script.addEventListener("load", handleScript);
+    // script.addEventListener("error", handleScript);
 
-    return () => {
-      script.removeEventListener("load", handleScript);
-      script.removeEventListener("error", handleScript);
-    };
-  }, [googleMapsScriptSrc]);
-
+    // return () => {
+    //   script.removeEventListener("load", handleScript);
+    //   script.removeEventListener("error", handleScript);
+    // };
+  }, []);
+// }, [googleMapsScriptSrc]);
   return state;
 }
 
