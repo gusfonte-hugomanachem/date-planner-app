@@ -15,10 +15,10 @@ function Homepage() {
       </div>
 
       <section className="flex flex-col gap-6 items-center w-3/5">
-      <h2 className="text-5xl mb-4 text-center">For all your date planning needs</h2>
-      <p className="text-lg lg:mx-2 leading-relaxed">
+      <h2 className="text-5xl mb-4 font-semibold text-center">For all your date planning needs</h2>
+      <p className="text-lg lg:mx-2 font-medium text-center leading-relaxed">
         A collaborative date planner app for all your date planning needs!
-        Whether it be a romantic, casual or formal plan, Date Flow allows users
+        Whether it be a romantic, casual or formal plan, <span className="font-bold italic">Date Flow</span> allows users
         to go as in-depth as needed, creating multiple activities, nested
         checklists, or keeping your plan a little more vague as you hammer out
         the details.
@@ -41,4 +41,3 @@ function Homepage() {
 }
 
 export default Homepage;
-/* mx-80 */
