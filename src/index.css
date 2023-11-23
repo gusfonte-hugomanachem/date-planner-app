@@ -57,3 +57,8 @@ html {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.map-container{
+	height: 500px;
+	width: 500px;
+}
