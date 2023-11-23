@@ -7,6 +7,8 @@ export const handler = async (event, context) => {
 
   const response = await axios.get(API_URL);
 
+  console.log("api js used!", response);
+
   return {
     statusCode: 200,
     body: JSON.stringify(response.data),

@@ -7,7 +7,7 @@ function GoogleMapsScriptLoader() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_NETLIFY_URL}`)
+      .get(`${import.meta.env.VITE_NETLIFY_URL}/api`)
       .then((response) => {
         console.log(response.data);
       })
