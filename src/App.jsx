@@ -25,22 +25,10 @@ function App() {
             <Route path="/dates/create" element={<AddDateForm />} />
             <Route path="/dates/:dateId" element={<DateDetails />} />
             <Route path="/dates/:dateId/edit" element={<UpdateDateForm />} />
-            <Route
-              path="/dates/:dateId/activity/:activityId"
-              element={<ActivityDetails />}
-            ></Route>
-            <Route
-              path="/dates/:dateId/activity/:activityId/edit"
-              element={<UpdateActivityForm />}
-            ></Route>
-            <Route
-              path="/dates/:dateId/activity/create"
-              element={<AddActivityForm />}
-            ></Route>
-            <Route
-              path="/dates/:dateId/activity/:activityId/addItem"
-              element={<AddChecklistItem />}
-            ></Route>
+            <Route path="/dates/:dateId/activity/:activityId" element={<ActivityDetails />} />
+            <Route path="/dates/:dateId/activity/:activityId/edit" element={<UpdateActivityForm />} />
+            <Route path="/dates/:dateId/activity/create" element={<AddActivityForm />} />
+            <Route path="/dates/:dateId/activity/:activityId/addItem" element={<AddChecklistItem />} />
           </Routes>
         </>
       ) : (
