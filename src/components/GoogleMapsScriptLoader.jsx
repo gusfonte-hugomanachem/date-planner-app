@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 function GoogleMapsScriptLoader ()  {
-  const googleMapsScriptSrc = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&callback=Function.prototype`
-  let [state, setState] = useState(googleMapsScriptSrc ? "loading" : "idle");
+  const url = `https://maps.googleapis.com/maps/api/js?key=${process.env.API_KEY}&libraries=places&callback=Function.prototype`
+  let [state, setState] = useState(url ? "loading" : "idle");
   
   useEffect(() => {
-    if (!googleMapsScriptSrc) {
+    if (!url) {
       setState("idle");
       return;
      }
-    let script = document.querySelector(`script[src="${googleMapsScriptSrc}"]`);
+    let script = document.querySelector(`script[src="${url}"]`);
     
     const handleScript = (e) => {
       setState(e.type === "load" ? "ready" : "error");
@@ -17,7 +17,7 @@ function GoogleMapsScriptLoader ()  {
     if (!script) {
       script = document.createElement("script");
       script.type = "application/javascript";
-      script.src = googleMapsScriptSrc;
+      script.src = url;
       script.async = true;
       document.body.appendChild(script);
       script.addEventListener("load", handleScript);
@@ -31,7 +31,7 @@ function GoogleMapsScriptLoader ()  {
      script.removeEventListener("load", handleScript);
      script.removeEventListener("error", handleScript);
    };
-  }, [googleMapsScriptSrc]);
+  }, [url]);
   
   return state;
 };
