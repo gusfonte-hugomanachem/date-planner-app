@@ -6,16 +6,30 @@ import AutoComplete from "../components/AutoComplete";
 function AddDateForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [place, setPlace] = useState("");
+  const [displayedPlace, setDisplayedPlace] = useState("");
   const [time, setTime] = useState(new Date());
   const [cost, setCost] = useState(0);
+
+  const [lat, setLat] = useState(null);
+  const [lon, setLon] = useState(null);
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newDate = { title, description, place, time, likes : 0, cost : parseInt(cost) };
+    const newDate = {
+      title: title,
+      time,
+      location: {
+        displayedPlace: displayedPlace,
+        lat: lat,
+        lon: lon,
+      },
+      description: description,
+      likes: 0,
+      cost: parseInt(cost),
+    };
     axios
       .post(`${import.meta.env.VITE_API_URL}/dates`, newDate)
       .then(() => {
@@ -26,7 +40,6 @@ function AddDateForm() {
 
   return (
     <div id="add-date-page">
-
       <form onSubmit={handleSubmit}>
         <label>
           Title :
@@ -53,7 +66,11 @@ function AddDateForm() {
 
         <label>
           Place :
-          <AutoComplete callbackToSetPlace = {setPlace}/>
+          <AutoComplete
+            callbackToSetDisplayedPlace={setDisplayedPlace}
+            callbackToSetLat={setLat}
+            callbackToSetLon={setLon}
+          />
         </label>
 
         <label>

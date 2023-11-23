@@ -7,10 +7,13 @@ function UpdateDateForm() {
   const { dateId } = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [place, setPlace] = useState("");
+  const [displayedPlace, setDisplayedPlace] = useState("");
   const [time, setTime] = useState(new Date());
   const [likes, setLikes] = useState(0);
   const [cost, setCost] = useState(0);
+
+  const [lat, setLat] = useState(null);
+  const [lon, setLon] = useState(null);
 
   const navigate = useNavigate();
 
@@ -25,9 +28,12 @@ function UpdateDateForm() {
         setTitle(response.data.title);
         setDescription(response.data.description);
         setTime(response.data.time);
-        setPlace(response.data.place);
+        setDisplayedPlace(response.data.location.displayedPlace);
         setLikes(response.data.likes);
         setCost(response.data.cost);
+        setLat(response.data.location.lat);
+        setLon(response.data.location.lon)
+
       })
       .catch((err) => {
         console.log("error to get date details : ", err);
@@ -39,7 +45,18 @@ function UpdateDateForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const updatedDate = { title, description, place, time, likes, cost : parseInt(cost) };
+    const updatedDate = {
+      title: title,
+      time,
+      location: {
+        displayedPlace: displayedPlace,
+        lat: lat,
+        lon: lon,
+      },
+      description: description,
+      likes: 0,
+      cost: parseInt(cost),
+    };
     axios
       .put(`${import.meta.env.VITE_API_URL}/dates/${dateId}`, updatedDate)
       .then(() => {
@@ -77,7 +94,12 @@ function UpdateDateForm() {
 
         <label>
           Place :
-          <AutoComplete initialValue={place} callbackToSetPlace = {setPlace}/>
+          <AutoComplete
+            initialValue={displayedPlace}
+            callbackToSetDisplayedPlace={setDisplayedPlace}
+            callbackToSetLat={setLat}
+            callbackToSetLon={setLon}
+          />
         </label>
 
         <label>
