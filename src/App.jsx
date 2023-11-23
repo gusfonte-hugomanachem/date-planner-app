@@ -9,7 +9,6 @@ import DateDetails from "./pages/DateDetails";
 import UpdateDateForm from "./pages/UpdateDateForm";
 import ActivityDetails from "./pages/ActivityDetails";
 import UpdateActivityForm from "./pages/UpdateActivityForm";
-import AddActivityForm from "./pages/AddActivityForm";
 import AddChecklistItem from "./pages/AddChecklistItem";
 import GoogleMapsScriptLoader from "./components/GoogleMapsScriptLoader";
 
@@ -32,10 +31,6 @@ function App() {
             <Route
               path="/dates/:dateId/activity/:activityId/edit"
               element={<UpdateActivityForm />}
-            ></Route>
-            <Route
-              path="/dates/:dateId/activity/create"
-              element={<AddActivityForm />}
             ></Route>
             <Route
               path="/dates/:dateId/activity/:activityId/addItem"

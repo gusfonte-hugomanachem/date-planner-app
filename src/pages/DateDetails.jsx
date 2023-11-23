@@ -4,6 +4,7 @@ import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import axios from "axios";
 
 import "../App.css";
+import AddActivityForm from "../components/AddActivityForm";
 
 function DateDetails() {
   const [date, setDate] = useState(null);
@@ -83,6 +84,15 @@ function DateDetails() {
       ) : (
         <div className="flex flex-col gap-6 justify-center items-center ">
           <div className="card card-compact w-3/5 bg-primary text-primary-content shadow-xl">
+            <dialog
+              id="my_modal_5"
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <AddActivityForm
+                dateId={dateId}
+                callbackToGetRelatedActivities={getRelatedActivities}
+              />
+            </dialog>
             <div className="card-body">
               <div className="flex justify-between card-title">
                 <section className="capitalize flex gap-3 items-center truncate">
@@ -177,9 +187,13 @@ function DateDetails() {
                     </div>
                   )}
 
-                  <Link to={`/dates/${dateId}/activity/create`} className="btn">
-                    <button>Add an activity</button>
-                  </Link>
+                  <button
+                    onClick={() =>
+                      document.getElementById("my_modal_5").showModal()
+                    }
+                  >
+                    Add an activity
+                  </button>
                 </div>
               </details>
             </div>
@@ -192,18 +206,17 @@ function DateDetails() {
                 See on map
               </summary>
               <div className="collapse-content">
-                
                 {center.lat === null || center.lon === null ? (
-                ""
-              ) : (
-                <GoogleMap
-                  zoom={15}
-                  center={center}
-                  mapContainerClassName="map-container"
-                >
-                  <MarkerF position={center} />
-                </GoogleMap>
-              )}
+                  ""
+                ) : (
+                  <GoogleMap
+                    zoom={15}
+                    center={center}
+                    mapContainerClassName="map-container"
+                  >
+                    <MarkerF position={center} />
+                  </GoogleMap>
+                )}
               </div>
             </details>
           </div>
