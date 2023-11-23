@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
+
 function GoogleMapsScriptLoader() {
 
  // let [state, setState] = useState(googleMapsScriptSrc ? "loading" : "idle");
