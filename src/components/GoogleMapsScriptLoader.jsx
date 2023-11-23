@@ -39,7 +39,7 @@ function GoogleMapsScriptLoader() {
     // };
   }, []);
 // }, [googleMapsScriptSrc]);
-  return state;
+  //return state;
 }
 
 export default GoogleMapsScriptLoader;
