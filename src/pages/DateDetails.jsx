@@ -5,6 +5,8 @@ import axios from "axios";
 
 import "../App.css";
 import ThemeController from "../components/ThemeController";
+import AddActivity from "../components/AddActivity";
+import Activity from "../components/Activity";
 
 function DateDetails() {
   const [date, setDate] = useState(null);
@@ -54,14 +56,17 @@ function DateDetails() {
     getRelatedActivities();
   }, []);
 
-  const deleteDate = async () => {
-    try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/dates/${dateId}`);
-      navigate(-1);
-    } catch (err) {
-      console.log("error to delete date : ", err);
-    }
-  };
+
+  const deleteDate = () => {
+    axios.delete(`${import.meta.env.VITE_API_URL}/dates/${dateId}`)
+        .then(() => {
+            navigate(-1);
+        })
+        .catch(err => {
+          console.log("error to delete activity : ",err.response.data)
+          navigate(-1);
+        })
+}
 
   const incrementLikesCounter = () => {
     const newLikesCounter = likesCounter + 1;
@@ -112,6 +117,7 @@ function DateDetails() {
       ) : (
         <div className="flex flex-col gap-6 justify-center items-center ">
           <div className="card card-compact w-3/5 bg-primary text-primary-content shadow-xl">
+            
             <div className="card-body">
               <div className="flex justify-between card-title">
                 <section className="capitalize flex gap-3 items-center truncate">
@@ -193,49 +199,16 @@ function DateDetails() {
                     <div>
                       {dateActivities.map((dateActivity) => {
                         return (
-                          <div className="DateDetails-activity-list flex gap-3">
-                            <div className="collapse bg-base-100">
-                              <input type="checkbox" />
-                              <div className="collapse-title text-xl font-medium">
-                                Click me to show/hide content
-                              </div>
-                              <div className="collapse-content">
-                                <p>checklist</p>
-                              </div>
-                            </div>
-
-                            {/* modal */}
-                            <button
-                              className="btn"
-                              onClick={() =>
-                                document
-                                  .getElementById("my_modal_2")
-                                  .showModal()
-                              }
-                            >
-                              open modal
-                            </button>
-                            <dialog id="my_modal_2" className="modal">
-                              <div className="modal-box">
-                                <h3 className="font-bold text-lg">Hello!</h3>
-                                <p className="py-4">
-                                  Press ESC key or click outside to close
-                                </p>
-                              </div>
-                              <form method="dialog" className="modal-backdrop">
-                                <button>close</button>
-                              </form>
-                            </dialog>
-                            {/* end */}
-                          </div>
+                          <Activity key={dateActivity.id} dateActivity={dateActivity} dateId={dateId} callbackToGetRelatedActivities={getRelatedActivities}/>
                         );
                       })}
                     </div>
                   )}
 
-                  <Link to={`/dates/${dateId}/activity/create`} className="btn">
-                    <button>Add an activity</button>
-                  </Link>
+<AddActivity
+                dateId={dateId}
+                callbackToGetRelatedActivities={getRelatedActivities}
+              />
                 </div>
               </details>
             </div>
