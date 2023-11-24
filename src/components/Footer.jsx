@@ -2,7 +2,6 @@ function Footer() {
   return (
     <footer className="footer footer-center p-6 bg-primary text-primary-content">
       <aside className="flex">
-        
         <svg
           width="50"
           height="50"
@@ -17,12 +16,12 @@ function Footer() {
 
         <p className="font-bold">Date Flow</p>
 
-        <div className="divider md:divider-horizontal divider-neutral opacity-50"></div> 
-        
+        <div className="divider md:divider-horizontal divider-neutral opacity-50"></div>
+
         <p>Gustavo & Hugo</p>
 
-        <div className="divider md:divider-horizontal divider-neutral opacity-50"></div> 
-        
+        <div className="divider md:divider-horizontal divider-neutral opacity-50"></div>
+
         <p className=" text-base">Copyright © 2023 - All rights reserved</p>
       </aside>
     </footer>
@@ -30,4 +29,4 @@ function Footer() {
 }
 export default Footer;
 
-// make names <a href> to our githubs 
+// make names <a href> to our githubs
