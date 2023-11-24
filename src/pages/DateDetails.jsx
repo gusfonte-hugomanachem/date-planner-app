@@ -4,7 +4,8 @@ import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import axios from "axios";
 
 import "../App.css";
-import AddActivityForm from "../components/AddActivityForm";
+import AddActivity from "../components/AddActivity";
+import Activity from "../components/Activity";
 
 function DateDetails() {
   const [date, setDate] = useState(null);
@@ -54,14 +55,17 @@ function DateDetails() {
     getRelatedActivities();
   }, []);
 
-  const deleteDate = async () => {
-    try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/dates/${dateId}`);
-      navigate(-1);
-    } catch (err) {
-      console.log("error to delete date : ", err);
-    }
-  };
+
+  const deleteDate = () => {
+    axios.delete(`${import.meta.env.VITE_API_URL}/dates/${dateId}`)
+        .then(() => {
+            navigate(-1);
+        })
+        .catch(err => {
+          console.log("error to delete activity : ",err.response.data)
+          navigate(-1);
+        })
+}
 
   const incrementLikesCounter = () => {
     const newLikesCounter = likesCounter + 1;
@@ -84,15 +88,7 @@ function DateDetails() {
       ) : (
         <div className="flex flex-col gap-6 justify-center items-center ">
           <div className="card card-compact w-3/5 bg-primary text-primary-content shadow-xl">
-            <dialog
-              id="my_modal_5"
-              className="modal modal-bottom sm:modal-middle"
-            >
-              <AddActivityForm
-                dateId={dateId}
-                callbackToGetRelatedActivities={getRelatedActivities}
-              />
-            </dialog>
+            
             <div className="card-body">
               <div className="flex justify-between card-title">
                 <section className="capitalize flex gap-3 items-center truncate">
@@ -174,26 +170,16 @@ function DateDetails() {
                     <div>
                       {dateActivities.map((dateActivity) => {
                         return (
-                          <div className="DateDetails-activity-list">
-                            <p>{dateActivity.title}</p>
-                            <Link
-                              to={`/dates/${dateId}/activity/${dateActivity.id}`}
-                            >
-                              <button>See activity details</button>
-                            </Link>
-                          </div>
+                          <Activity key={dateActivity.id} dateActivity={dateActivity} dateId={dateId} callbackToGetRelatedActivities={getRelatedActivities}/>
                         );
                       })}
                     </div>
                   )}
 
-                  <button
-                    onClick={() =>
-                      document.getElementById("my_modal_5").showModal()
-                    }
-                  >
-                    Add an activity
-                  </button>
+<AddActivity
+                dateId={dateId}
+                callbackToGetRelatedActivities={getRelatedActivities}
+              />
                 </div>
               </details>
             </div>
