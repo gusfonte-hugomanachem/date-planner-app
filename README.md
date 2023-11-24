@@ -29,7 +29,8 @@ Interation with Google Maps API to display locations and use search functionalit
 
 - Install the dependencies with `npm install`
 - Create an `.env` file and add those environment variables : `VITE_API_URL="https://date-flow.adaptable.app"`
-
-(hugo explain how to make a google api key)
+- To fully use the app, you'll need to :
+1. Have an Google API key in order to communicate with Google Maps API. You can follow steps on the Google documentation (https://developers.google.com/maps/get-started)
+2. In GoogleMapsScriptLoader.jsx, you can now replace the API key variable by your API key
 
 - Run the app with `npm run dev`
