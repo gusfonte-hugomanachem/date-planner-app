@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-
+import logo from "../assets/dots-and-pencil.png"
 import "../App.css";
 import { Link } from "react-router-dom";
 import ThemeController from "../components/ThemeController";
@@ -19,9 +19,8 @@ function Homepage() {
           Date Flow
         </h1>
       
-        {/* TRY   ../src/assets/dots-and-pencil.png OR src/assets/dots-and-pencil.png ON PRODUCTION */}
         <img
-          src="./src/assets/dots-and-pencil.png"
+          src={logo}
           alt="dots and pencil"
           className="w-80 pb-3"
         />
