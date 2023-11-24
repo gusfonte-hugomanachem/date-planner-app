@@ -73,7 +73,9 @@ function DateSummary (props) {
                       </div>
 
                       <div className="btn min-h-min h-7">
-                        &#128178;
+                        {props.date.cost <= 20 ? (<p>&#128178;</p>) : ("")}
+                        {props.date.cost > 20 && props.date.cost <= 50 ? (<p>&#128178; &#128178;</p>) : ("")}
+                        {props.date.cost > 50 ? (<p>&#128178; &#128178; &#128178;</p>) : ("")}
                       </div>
                     </div>
                   </div>
