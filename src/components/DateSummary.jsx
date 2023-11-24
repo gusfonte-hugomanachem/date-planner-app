@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 
 function DateSummary (props) {
+
+  const timeConversion = () => {
+    const originalTime = props.date.time
+    const year = originalTime.substr(2,2);
+    const month = originalTime.substr(5, 2);
+    const date = originalTime.substr(8,2);
+    const formattedTime = `${date}/${month}/${year}`;
+    return formattedTime;
+  }
+  
     return (
         <div
                 key={props.date.id}
@@ -44,7 +54,7 @@ function DateSummary (props) {
                           />
                         </svg>
 
-                        {props.date.time}
+                        {timeConversion()}
                       </h2>
                     </div>
                     <p>Description: {props.date.description}</p>
