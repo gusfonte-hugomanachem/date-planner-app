@@ -15,13 +15,17 @@ Whether it be a romantic, casual or formal plan, **Date Flow** allows users to g
 - Create a small fullstack app in JS with CRUD
 - Second project during the Ironhack Bootcamp
 
-### II. Constraints
+### II. Integrations
+
+Interation with Google Maps API to display locations and use search functionalities.
+
+### III. Constraints
 
 - Duo project, collaboration, managing merge conflicts
 - Time restraint: the app had to be produced in less than a week
 - Technologies: Javascript with React, Vite, Node.js and Tailwind CSS
 
-### III. Instructions to run this app in your computer
+### IV. Instructions to run this app in your computer
 
 - Install the dependencies with `npm install`
 - Create an `.env` file and add those environment variables : `VITE_API_URL="https://date-flow.adaptable.app"`
