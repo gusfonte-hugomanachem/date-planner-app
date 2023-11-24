@@ -22,9 +22,9 @@ function AddActivity(props) {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <button
-        className="btn"
+        className="btn btn-wide"
         onClick={() =>
           document
             .getElementById(`add_activity_modal`)
@@ -37,20 +37,26 @@ function AddActivity(props) {
         <div className="modal-box">
           <h3 className="font-bold text-lg">Add the activity's title :</h3>
           <p className="py-4"></p>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Title :
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+
+          <div className="form-control">
+                <label>
+                  <span className="label-text text-primary font-medium">Title*</span>
+                </label>
               <input
+                className="input input-bordered input-sm"
                 type="text"
                 name="title"
                 value={title}
+                placeholder="Enter a title"
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
-              />
-            </label>
+                />
+                </div>
 
-            <button>Create</button>
+
+            <button className="btn">Create</button>
           </form>
         </div>
         <form method="dialog" className="modal-backdrop">

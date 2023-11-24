@@ -55,7 +55,7 @@ function DateSummary (props) {
                     </Link>
 
                     <div className="flex gap-3">
-                      <div className="btn min-h-min h-7">
+                      <div className="badge badge-primary-content gap-1 min-h-min h-7">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ function DateSummary (props) {
                         {props.date.likes}
                       </div>
 
-                      <div className="btn min-h-min h-7">
+                      <div className="badge badge-primary-content min-h-min h-7">
                         {props.date.cost <= 20 ? (<p>&#128178;</p>) : ("")}
                         {props.date.cost > 20 && props.date.cost <= 50 ? (<p>&#128178; &#128178;</p>) : ("")}
                         {props.date.cost > 50 ? (<p>&#128178; &#128178; &#128178;</p>) : ("")}

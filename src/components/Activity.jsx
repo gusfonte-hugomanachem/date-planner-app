@@ -78,22 +78,23 @@ function Activity(props) {
   };
 
   return (
+
     <div className="DateDetails-activity-list flex gap-3">
       <div className="collapse bg-base-100">
         <input type="checkbox" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl font-medium capitalize">
           {props.dateActivity.title}
         </div>
         <div className="collapse-content">
           {checklist === undefined ? (
             <div>
-              <p>No related checklist. Want to create one ?</p>
-              <button onClick={createChecklist}>Add a checklist</button>
+              <p>No related checklist.</p>
+              <button onClick={createChecklist} className="btn btn-sm">Add a checklist</button>
             </div>
           ) : (
             <div>
               {checklist.checklist.length === 0 ? (
-                <p>No items... Start by adding one </p>
+                <p>No items...</p>
               ) : (
                 <div>
                   <h1>Checklist:</h1>
@@ -123,7 +124,7 @@ function Activity(props) {
                   />
                   {checklist.checklist.length > 0 ? (
                     <button
-                      className="btn"
+                      className="btn btn-sm"
                       onClick={() => {
                         deleteChecklist();
                       }}
@@ -141,7 +142,7 @@ function Activity(props) {
       </div>
       {/* modal edit */}
       <button
-        className="btn"
+        className="btn btn-ghost btn-circle"
         onClick={() =>
           document
             .getElementById(`my_modal_${props.dateActivity.id}`)
@@ -176,7 +177,7 @@ function Activity(props) {
       </dialog>
 
       {/* delete button */}
-      <button className="btn" onClick={deleteActivity}>
+      <button className="btn btn-ghost btn-circle" onClick={deleteActivity}>
         &#10060;
       </button>
 

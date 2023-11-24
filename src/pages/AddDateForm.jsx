@@ -75,83 +75,66 @@ function AddDateForm() {
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex justify-between">
-              <div className="form-control">
+            <div className="form-control">
                 <label>
-                  <span className="label-text text-primary-content font-medium">
-                    Title*
-                  </span>
+                  <span className="label-text text-primary-content font-medium">Title*</span>
                 </label>
-                <input
-                  className="input input-bordered input-sm"
-                  type="text"
-                  name="title"
-                  value={title}
-                  placeholder="Enter a date title"
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                />
+                <input className="input input-bordered input-sm" type="text" name="title" value={title} placeholder="Enter a date title" onChange={(e) => setTitle(e.target.value)} required/>
               </div>
 
               <div className="form-control">
                 <label>
-                  <span className="label-text text-primary-content font-medium">
-                    Time
-                  </span>
+                  <span className="label-text text-primary-content font-medium">Time</span>
                 </label>
-                <input
-                  className="input input-bordered input-sm"
-                  type="date"
-                  name="time"
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
+              <input
+                className="input input-bordered input-sm"
+                type="date"
+                name="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
                 />
-              </div>
+                </div>
 
-              <div className="form-control">
+                <div className="form-control">
                 <label>
-                  <span className="label-text text-primary-content font-medium">
-                    Cost
-                  </span>
+                  <span className="label-text text-primary-content font-medium">Cost</span>
                 </label>
-                <input
-                  className="input input-bordered input-sm"
-                  type="number"
-                  name="cost"
-                  value={cost}
-                  min={0}
-                  onChange={(e) => setCost(e.target.value)}
+              <input
+                className="input input-bordered input-sm"
+                type="number"
+                name="cost"
+                value={cost}
+                min={0}
+                onChange={(e) => setCost(e.target.value)}
                 />
-              </div>
+                </div>
+
             </div>
 
             <div className="form-control">
-              <label>
-                <span className="label-text text-primary-content font-medium">
-                  Location
-                </span>
-              </label>
+                <label>
+                  <span className="label-text text-primary-content font-medium">Location</span>
+                </label>
               <AutoComplete
                 callbackToSetDisplayedPlace={setDisplayedPlace}
                 callbackToSetLat={setLat}
                 callbackToSetLon={setLon}
-              />
-            </div>
+                />
+                </div>
 
-            <div className="form-control">
-              <label>
-                <span className="label-text text-primary-content font-medium">
-                  Description
-                </span>
-              </label>
+                <div className="form-control">
+                <label>
+                  <span className="label-text text-primary-content font-medium">Description</span>
+                </label>
               <textarea
-                className="textarea textarea-bordered textarea-sm"
+              className="textarea textarea-bordered textarea-sm"
                 type="text"
                 name="description"
                 value={description}
                 placeholder="Enter a description"
                 onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
+                />
+                </div>
 
             <button className="btn">Create</button>
           </form>

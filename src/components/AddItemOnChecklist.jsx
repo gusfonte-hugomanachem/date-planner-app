@@ -21,7 +21,7 @@ function AddItemOnChecklist(props) {
   return (
     <div>
       <button
-        className="btn"
+        className="btn btn-sm"
         onClick={() =>
           document.getElementById(`add_item_checklist_${props.checklist.id}_modal`).showModal()
         }
